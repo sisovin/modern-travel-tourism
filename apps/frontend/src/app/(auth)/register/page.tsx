@@ -11,7 +11,7 @@ const RegisterPage = () => {
 
     // Implement form submission logic to create a new user account
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
