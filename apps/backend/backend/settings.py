@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend',  # Add backend to INSTALLED_APPS
     'rest_framework_simplejwt',  # Add rest_framework_simplejwt to INSTALLED_APPS
 ]
 

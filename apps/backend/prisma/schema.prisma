@@ -7,18 +7,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+/// User model representing a user in the system
 model User {
   id       Int      @id @default(autoincrement())
-  name     String
+  name     String   @unique
   email    String   @unique
   password String
-  sessions Session[]
+  bookings Booking[]
 }
 
-model Session {
+/// Room model representing a room in the system
+model Room {
+  id        Int       @id @default(autoincrement())
+  name      String
+  amenities Amenity[]
+  bookings  Booking[]
+}
+
+/// Booking model representing a booking in the system
+model Booking {
   id        Int      @id @default(autoincrement())
   userId    Int
+  roomId    Int
+  checkIn   DateTime
+  checkOut  DateTime
   user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  room      Room     @relation(fields: [roomId], references: [id])
+}
+
+/// Amenity model representing an amenity in the system
+model Amenity {
+  id    Int    @id @default(autoincrement())
+  name  String
+  rooms Room[]
 }
