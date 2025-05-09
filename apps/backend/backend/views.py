@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 from django.utils.decorators import method_decorator
 from django.views import View
 from .authentication import generate_jwt_token, verify_jwt_token, refresh_jwt_token
@@ -12,7 +12,7 @@ from rest_framework.pagination import PageNumberPagination
 
 logger = logging.getLogger(__name__)
 
-@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(csrf_protect, name='dispatch')
 class RegisterView(View):
     def post(self, request):
         try:
@@ -28,7 +28,7 @@ class RegisterView(View):
             logger.error(f"Error during registration: {str(e)}")
             return JsonResponse({'error': 'Registration failed'}, status=500)
 
-@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(csrf_protect, name='dispatch')
 class LoginView(View):
     def post(self, request):
         try:
@@ -45,7 +45,7 @@ class LoginView(View):
             logger.error(f"Error during login: {str(e)}")
             return JsonResponse({'error': 'Login failed'}, status=500)
 
-@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(csrf_protect, name='dispatch')
 class TokenRefreshView(View):
     def post(self, request):
         try:

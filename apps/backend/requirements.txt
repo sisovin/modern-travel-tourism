@@ -3,3 +3,5 @@ prisma
 django
 psycopg2
 django-redis
+django-cors-headers
+django-ratelimit

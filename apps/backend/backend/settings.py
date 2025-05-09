@@ -196,3 +196,25 @@ CACHES = {
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 600
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://example.com",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "DELETE",
+]
+
+CORS_ALLOW_ALL_ORIGINS = False
