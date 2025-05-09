@@ -3,6 +3,7 @@ import HeroCarousel from '../components/HeroCarousel';
 import RoomSearch from '../components/RoomSearch';
 import FeaturedRooms from '../components/FeaturedRooms';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
+import ReservationForm from '../components/ReservationForm';
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <RoomSearch />
       <FeaturedRooms />
       <TestimonialsCarousel />
+      <ReservationForm />
     </div>
   );
 };
