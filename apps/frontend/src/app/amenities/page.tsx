@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import '../../styles/amenities.css';
 import AmenityCard from '../../components/AmenityCard';
 import AmenityFilter from '../../components/AmenityFilter';
