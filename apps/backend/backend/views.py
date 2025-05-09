@@ -7,6 +7,12 @@ from django.views import View
 from .authentication import generate_jwt_token, verify_jwt_token, refresh_jwt_token
 import logging
 
+from rest_framework import generics, filters
+from rest_framework.pagination import PageNumberPagination
+from .models import Room
+from .serializers import RoomSerializer, RoomDetailSerializer
+from .permissions import IsAdminOrReadOnly
+
 logger = logging.getLogger(__name__)
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -56,3 +62,33 @@ class TokenRefreshView(View):
         except Exception as e:
             logger.error(f"Error during token refresh: {str(e)}")
             return JsonResponse({'error': 'Token refresh failed'}, status=500)
+
+class RoomListCreateView(generics.ListCreateAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+    permission_classes = [IsAdminOrReadOnly]
+    pagination_class = PageNumberPagination
+
+    def get_queryset(self):
+        queryset = Room.objects.all()
+        capacity = self.request.query_params.get('capacity', None)
+        amenities = self.request.query_params.getlist('amenities', None)
+        if capacity is not None:
+            queryset = queryset.filter(capacity__gte=capacity)
+        if amenities:
+            for amenity in amenities:
+                queryset = queryset.filter(amenities__name=amenity)
+        return queryset
+
+class RoomDetailView(generics.RetrieveAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomDetailSerializer
+    permission_classes = [IsAdminOrReadOnly]
+
+class RoomFilter(filters.FilterSet):
+    capacity = filters.NumberFilter(field_name="capacity", lookup_expr='gte')
+    amenities = filters.CharFilter(field_name="amenities__name", lookup_expr='in')
+
+    class Meta:
+        model = Room
+        fields = ['capacity', 'amenities']
