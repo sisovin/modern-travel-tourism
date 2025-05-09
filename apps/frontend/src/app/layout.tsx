@@ -1,8 +1,8 @@
 import React from 'react';
-import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Raleway, RobotoSlab } from 'next/font/google';
 import '../styles/globals.css';
+import Navbar from '../components/Navbar';
 
 // Import Google Fonts for Raleway and Roboto Slab
 const raleway = Raleway({ subsets: ['latin'], variable: '--font-raleway' });
@@ -15,7 +15,7 @@ const Layout: React.FC = ({ children }) => {
   return (
     <div className={`${raleway.variable} ${robotoSlab.variable} ${darkModeClass}`}>
       {/* Shared header component */}
-      <Header />
+      <Navbar />
       <main>{children}</main>
       {/* Shared footer component */}
       <Footer />
