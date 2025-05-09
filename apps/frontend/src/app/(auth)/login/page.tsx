@@ -23,6 +23,12 @@ const LoginPage = () => {
         throw new Error('Invalid login attempt');
       }
 
+      const data = await response.json();
+      const token = data.token;
+
+      // Store the token in local storage
+      localStorage.setItem('token', token);
+
       // Handle successful login (e.g., redirect to dashboard)
     } catch (err) {
       setError(err.message);
