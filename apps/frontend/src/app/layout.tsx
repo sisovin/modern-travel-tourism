@@ -1,8 +1,10 @@
 import React from 'react';
-import { Footer } from '../components/Footer';
+import dynamic from 'next/dynamic';
 import { Raleway, RobotoSlab } from 'next/font/google';
 import '../styles/globals.css';
-import Navbar from '../components/Navbar';
+
+const Navbar = dynamic(() => import('../components/Navbar'));
+const Footer = dynamic(() => import('../components/Footer'));
 
 // Import Google Fonts for Raleway and Roboto Slab
 const raleway = Raleway({ subsets: ['latin'], variable: '--font-raleway' });

@@ -1,9 +1,11 @@
 import React from 'react';
-import HeroCarousel from '../components/HeroCarousel';
-import RoomSearch from '../components/RoomSearch';
-import FeaturedRooms from '../components/FeaturedRooms';
-import TestimonialsCarousel from '../components/TestimonialsCarousel';
-import ReservationForm from '../components/ReservationForm';
+import dynamic from 'next/dynamic';
+
+const HeroCarousel = dynamic(() => import('../components/HeroCarousel'));
+const RoomSearch = dynamic(() => import('../components/RoomSearch'));
+const FeaturedRooms = dynamic(() => import('../components/FeaturedRooms'));
+const TestimonialsCarousel = dynamic(() => import('../components/TestimonialsCarousel'));
+const ReservationForm = dynamic(() => import('../components/ReservationForm'));
 
 const HomePage = () => {
   return (

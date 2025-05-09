@@ -39,6 +39,7 @@ const HeroCarousel: React.FC = () => {
               alt={slide.alt}
               layout="fill"
               objectFit="cover"
+              priority={index === 0}
             />
           </div>
         ))}

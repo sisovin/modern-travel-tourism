@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import 'tailwindcss/tailwind.css';
 
 const featuredRooms = [
@@ -32,7 +33,7 @@ const FeaturedRooms: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {featuredRooms.map((room) => (
           <div key={room.id} className="bg-white shadow-md rounded-md overflow-hidden">
-            <img src={room.image} alt={room.name} className="w-full h-48 object-cover" />
+            <Image src={room.image} alt={room.name} className="w-full h-48 object-cover" width={500} height={300} />
             <div className="p-4">
               <h3 className="text-xl font-bold mb-2">{room.name}</h3>
               <p className="text-gray-700 mb-4">{room.description}</p>
